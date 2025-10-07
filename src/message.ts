@@ -5,8 +5,8 @@ export type GrpcWebMessageEventData = {
 export type GrpcWebData = {
   method: string;
   methodType: string;
-  request?: any;
-  response?: any;
+  request?: Record<string, unknown>;
+  response?: Record<string, unknown>;
   error?: Error;
 };
 

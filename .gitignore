@@ -1,3 +1,6 @@
+grpcweb-devtools.zip
+grpcweb-devtools.*.zip
+
 # Logs
 logs
 *.log

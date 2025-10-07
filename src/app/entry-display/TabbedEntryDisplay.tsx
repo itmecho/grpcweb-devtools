@@ -3,6 +3,7 @@ import type { Entry } from "../../state/entries";
 import { JsonDisplay } from "../../components/JsonDisplay";
 import classNames from "classnames";
 import { EntryDisplayMessage } from "../../components/EntryDisplayMessage";
+import { formatDateToTime } from "../../utils/date";
 
 type TabKey = "info" | "request" | "response";
 
@@ -67,14 +68,19 @@ function InfoTabContent({ entry }: { entry: Entry }) {
           <td>{entry.method ? entry.method : "unknown"}</td>
         </tr>
         <tr>
-          <td>Duration:</td>
-          <td>{entry.duration ? `${entry.duration}ms` : "unknown"}</td>
+          <td className="font-bold">Timestamp:</td>
+          <td>{formatDateToTime(entry.timestamp)}</td>
         </tr>
       </tbody>
     </table>
   );
 }
-function JsonTabContent({ data }: { data: Record<string, any> | undefined }) {
+
+function JsonTabContent({
+  data,
+}: {
+  data: Record<string, unknown> | undefined;
+}) {
   if (!data) {
     return <EntryDisplayMessage>Missing data.</EntryDisplayMessage>;
   }

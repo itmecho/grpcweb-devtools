@@ -5,10 +5,10 @@ import { Toolbar } from "./app/Toolbar";
 
 function App() {
   return (
-    <div className="dark:bg-gray-900 dark:text-gray-200 h-full flex flex-col">
+    <div className="dark:bg-gray-900 dark:text-gray-200 h-full max-h-screen overflow-hidden flex flex-col">
       <MessageHandler />
       <Toolbar />
-      <div className="grow flex">
+      <div className="grow flex max-h-[calc(100vh - var(--toolbar-height))] overflow-y-auto">
         <EntryList />
         <EntryDisplay />
       </div>

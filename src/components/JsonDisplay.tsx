@@ -9,7 +9,6 @@ export function JsonDisplay({ src }: { src: object }) {
         theme="tomorrow"
         displayArrayKey={false}
         displayDataTypes={false}
-        collapsed={2}
         style={{
           backgroundColor: "var(--color-gray-900)",
           padding: "calc(var(--spacing) * 4)",

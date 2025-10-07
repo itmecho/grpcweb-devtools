@@ -1,13 +1,17 @@
 import { useAtom, useAtomValue } from "jotai";
 import { entriesAtom, selectedEntryAtom, type Entry } from "../state/entries";
 import classNames from "classnames";
+import { settingsAtom } from "../state/settings";
+import { formatDateToTime } from "../utils/date";
 
 export function EntryList() {
+  const { reverseList } = useAtomValue(settingsAtom);
   const entries = useAtomValue(entriesAtom);
+  const entryList = reverseList ? entries.slice().reverse() : entries;
   const [selectedEntry, setSelectedEntry] = useAtom(selectedEntryAtom);
   return (
-    <div className="h-full min-w-3xs w-1/3 resize-x border-r-2 border-gray-600 overflow-y-auto">
-      {entries.map((e) => (
+    <div className="h-full min-w-3xs w-1/3 resize-x border-r-2 border-gray-600 max-h-full overflow-y-auto">
+      {entryList.map((e) => (
         <ListItem
           key={e.id}
           entry={e}
@@ -31,20 +35,20 @@ function ListItem({
   if (!entry.method) {
     return null;
   }
-  const method = entry.method.replace(/^.+:\/\/[^/]+\//, '');
+  const method = entry.method.split("/").at(-1) ?? "ERR: unknown";
   return (
     <button
-      className="block w-full text-left cursor-pointer hover:bg-slate-700"
+      className={classNames(
+        "w-full flex items-center justify-between px-2 py-1 border-b-2 border-slate-600 text-left cursor-pointer hover:bg-slate-700",
+        isSelected && "bg-slate-700",
+      )}
       onClick={onClick}
     >
-      <p
-        className={classNames(
-          "px-2 py-1 border-b-2 border-slate-600",
-          isSelected && "font-bold",
-        )}
-      >
+      <p>
+        {isSelected && "> "}
         {method}
       </p>
+      <p className="dark:text-gray-500">{formatDateToTime(entry.timestamp)}</p>
     </button>
   );
 }
