@@ -10,7 +10,7 @@ export function EntryList() {
   const entryList = reverseList ? entries.slice().reverse() : entries;
   const [selectedEntry, setSelectedEntry] = useAtom(selectedEntryAtom);
   return (
-    <div className="h-full min-w-3xs w-1/3 resize-x border-r-2 border-gray-600 max-h-full overflow-y-auto">
+    <div className="h-full min-w-3xs w-10 resize-x border-r-2 border-slate-400 dark:border-slate-600 max-h-full overflow-y-auto">
       {entryList.map((e) => (
         <ListItem
           key={e.id}
@@ -39,8 +39,8 @@ function ListItem({
   return (
     <button
       className={classNames(
-        "w-full flex items-center justify-between px-2 py-1 border-b-2 border-slate-600 text-left cursor-pointer hover:bg-slate-700",
-        isSelected && "bg-slate-700",
+        "w-full flex items-center justify-between px-2 py-1 border-b-2 border-slate-400 dark:border-slate-600 text-left cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-700",
+        isSelected && "bg-slate-400 dark:bg-slate-700",
       )}
       onClick={onClick}
     >
@@ -48,7 +48,7 @@ function ListItem({
         {isSelected && "> "}
         {method}
       </p>
-      <p className="dark:text-gray-500">{formatDateToTime(entry.timestamp)}</p>
+      <p className="dark:text-slate-500">{formatDateToTime(entry.timestamp)}</p>
     </button>
   );
 }
