@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export function formatDateToTime(d: Date) {
-  return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}.${d.getMilliseconds()}`;
+  return format(d, "HH:mm:ss.SSS")
 }
