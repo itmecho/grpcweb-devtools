@@ -10,8 +10,13 @@ type TabKey = "info" | "request" | "response";
 export function TabbedEntryDisplay({ entry }: { entry: Entry }) {
   const [selectedTab, setSelectedTab] = useState<TabKey>("info");
   return (
-    <div className="w-full">
-      <div className="border-b-2 border-slate-400 dark:border-slate-600">
+    <div
+      className="w-full"
+      style={
+        { ["--tabbar-height"]: "calc(var(--spacing)*8)" } as React.CSSProperties
+      }
+    >
+      <div className="h-[var(--tabbar-height)] border-b-2 border-slate-400 dark:border-slate-600">
         <Tab
           name="Info"
           onClick={() => setSelectedTab("info")}
@@ -28,7 +33,7 @@ export function TabbedEntryDisplay({ entry }: { entry: Entry }) {
           isSelected={selectedTab === "response"}
         />
       </div>
-      <div>
+      <div className="max-h-[calc(100%-var(--tabbar-height))] overflow-y-auto">
         {selectedTab === "info" && <InfoTabContent entry={entry} />}
         {selectedTab === "request" && <JsonTabContent data={entry.request} />}
         {selectedTab === "response" && <JsonTabContent data={entry.response} />}
@@ -49,7 +54,7 @@ function Tab({
   return (
     <button
       className={classNames(
-        "cursor-pointer px-4 py-2 border-r-2 border-slate-400 dark:border-slate-600 hover:bg-slate-600",
+        "h-full cursor-pointer px-4 border-r-2 border-slate-400 dark:border-slate-600 hover:bg-slate-600",
         isSelected && "font-bold",
       )}
       onClick={onClick}
