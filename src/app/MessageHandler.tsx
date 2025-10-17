@@ -19,6 +19,7 @@ function handler(
       method: data.data.method,
       request: data.data.request,
       response: data.data.response,
+      error: data.data.error,
     },
   ]);
 }

@@ -4,8 +4,9 @@ export type Entry = {
   id: string;
   timestamp: Date;
   method?: string;
-  request?: Record<string, unknown>; //TODO
-  response?: Record<string, unknown>; //TODO
+  request?: Record<string, unknown>;
+  response?: Record<string, unknown>;
+  error?: Error;
 };
 
 const fakeObj = Array.from(Array(20).keys()).reduce<Record<string, string>>(
@@ -21,7 +22,7 @@ export const entriesAtom = atom<Entry[]>(
     ? Array.from(Array(10).keys()).map((i) => ({
         id: `id-${i}`,
         timestamp: new Date(),
-        method: `https://api.example.com/some.package.Service/SomeMethod${i}`,
+        method: `https://api.example.com/some.package.Service/ExampleMethod${i}`,
         request: fakeObj,
         response: fakeObj,
       }))

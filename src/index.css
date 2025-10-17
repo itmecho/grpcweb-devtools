@@ -3,7 +3,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root {
-  --toolbar-height: calc(var(--spacing)*8);
+  --toolbar-height: calc(var(--spacing)*10);
 }
 
 body {
