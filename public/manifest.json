@@ -11,6 +11,11 @@
   "background": {
     "service_worker": "worker.js"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "grpcweb-devtools@sparx.co.uk"
+    }
+  },
   "web_accessible_resources": [],
   "content_scripts": [
     {
