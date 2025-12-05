@@ -9,7 +9,7 @@ fi
 set -e
 
 package_version=$(jq -r '.version' package.json)
-if [[ "$TAG" != "$package_version" ]]; then
+if [ "$TAG" != "$package_version" ]; then
   echo "Tag $TAG does not match package version $package_version"
   exit 1
 fi
