@@ -9,8 +9,14 @@ if (browser !== "chrome" && browser !== "firefox") {
   throw new Error("ERROR: second arg must be either 'chrome' or 'firefox'");
 }
 
+const version = process.argv[4];
+if (!version) {
+  throw new Error("ERROR: third arg must be a version number");
+}
+
 const manifestFile = readFileSync(manifestPath, { encoding: "utf-8" });
 const manifest = JSON.parse(manifestFile);
+manifest["version"] = version;
 manifest["background"] =
   browser === "chrome"
     ? {
