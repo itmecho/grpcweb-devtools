@@ -1,5 +1,4 @@
-grpcweb-devtools.zip
-grpcweb-devtools.*.zip
+grpcweb-devtools-*
 
 # Logs
 logs
